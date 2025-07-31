@@ -1,36 +1,12 @@
-import { useState } from 'react'
-import { ThemeProvider, createTheme } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-
-import Header from "./partials/Header"
-
-
+import TemplateDefault from './templates/Default'
+import UserForm from './components/UserForm'
 
 function App() {
-
-  const  [mode, setMode] = useState(true)
-
-  const theme = createTheme({
-    colorSchemes: {
-      dark: mode
-    }
-  })
-
-  const toggleTheme = (isDark) => {
-      isDark ? setMode(false) : setMode(true)
-  }
-
   return (
-    <ThemeProvider theme={theme} >
-      <CssBaseline>
-        <Header toggleTheme={toggleTheme} isDark={mode}>
-          <h1>Hello World</h1>
-        </Header>
-      </CssBaseline>
-    </ThemeProvider>
+    <TemplateDefault>
+      <UserForm />
+    </TemplateDefault>
   )
 }
-
-
 
 export default App
