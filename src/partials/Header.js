@@ -27,8 +27,8 @@ const Header = ({ toggleTheme, isDark }) => {
                         aria-label='settings'
                     >
                         {isDark ?
-                            <LightModeIcon onClick={() => toggleTheme()} /> :
-                            <DarkModeIcon onClick={() => toggleTheme()} />
+                            <LightModeIcon onClick={() => toggleTheme(true)} /> :
+                            <DarkModeIcon onClick={() => toggleTheme(false)} />
                         }
                     </IconButton>
                 </Toolbar>

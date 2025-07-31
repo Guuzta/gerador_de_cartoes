@@ -16,12 +16,8 @@ function App() {
     }
   })
 
-  const toggleTheme = () => {
-    if(mode === false) {
-      setMode(true)
-    } else {
-      setMode(false)
-    }
+  const toggleTheme = (isDark) => {
+      isDark ? setMode(false) : setMode(true)
   }
 
   return (
