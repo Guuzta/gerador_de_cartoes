@@ -1,13 +1,19 @@
 import { useState } from 'react'
-import { 
-    TextField, 
-    Typography, 
-    Box, 
-    Button, 
-    Grid 
+import {
+    TextField,
+    Typography,
+    Box,
+    Button,
+    Grid
 } from '@mui/material'
 
+import UserCard from './UserCard'
+
 const UserForm = () => {
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const [form, setForm] = useState({
         name: {
@@ -90,8 +96,21 @@ const UserForm = () => {
 
 
         if (hasError) {
-            setForm(newFormState)
+            return setForm(newFormState)
         }
+
+        toggleCardView()
+
+    }
+
+    const toggleCardView = () => {
+
+        setIsLoading(true)
+
+        setTimeout(() => {
+            setIsOpen(true)
+            setIsLoading(false)
+        }, 2000)
     }
 
     return (
@@ -168,6 +187,7 @@ const UserForm = () => {
 
                 <Grid size={{ xs: 12, sm: 7, md: 4 }}>
                     <Button
+                        loading={isLoading}
                         onClick={handleRegisterButton}
                         variant='contained'
                         sx={{
@@ -181,7 +201,10 @@ const UserForm = () => {
 
             </Grid>
 
+            {isOpen && <UserCard user={form} />}
         </Box>
+
+
     )
 }
 
