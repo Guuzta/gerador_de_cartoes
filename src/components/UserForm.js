@@ -43,8 +43,6 @@ const UserForm = () => {
                 value
             }
         })
-
-        console.log(form)
     }
 
     const handleRegisterButton = () => {
@@ -103,6 +101,38 @@ const UserForm = () => {
 
     }
 
+    const handleResetButton = () => {
+        setIsOpen(false)
+        const resetFormState = ({
+            ...form
+        })
+
+        console.log(resetFormState)
+
+        resetFormState.name = {
+            value: '',
+            error: false
+        }
+
+        resetFormState.job = {
+            value: '',
+            error: false
+        }
+
+        resetFormState.phone = {
+            value: '',
+            error: false
+        }
+
+        resetFormState.email = {
+            value: '',
+            error: false
+        }
+
+        setForm(resetFormState)
+        console.log(form)
+    }
+
     const toggleCardView = () => {
 
         setIsLoading(true)
@@ -138,6 +168,7 @@ const UserForm = () => {
 
                 <Grid size={{ xs: 12, sm: 7, md: 4 }}>
                     <TextField
+                        disabled={isOpen}
                         error={form.name.error}
                         helperText={form.name.error ? form.name.helperText : ''}
                         onChange={handleInputChange}
@@ -151,6 +182,7 @@ const UserForm = () => {
 
                 <Grid size={{ xs: 12, sm: 7, md: 4 }}>
                     <TextField
+                        disabled={isOpen}
                         error={form.job.error}
                         helperText={form.job.error ? form.job.helperText : ''}
                         onChange={handleInputChange}
@@ -163,9 +195,11 @@ const UserForm = () => {
 
                 <Grid size={{ xs: 12, sm: 7, md: 4 }}>
                     <TextField
+                        disabled={isOpen}
                         error={form.phone.error}
                         helperText={form.phone.error ? form.phone.helperText : ''}
                         onChange={handleInputChange}
+                        value={form.phone.value}
                         name='phone'
                         label='Telefone'
                         variant='outlined'
@@ -175,9 +209,11 @@ const UserForm = () => {
 
                 <Grid size={{ xs: 12, sm: 7, md: 4 }}>
                     <TextField
+                        disabled={isOpen}
                         error={form.email.error}
                         helperText={form.email.error ? form.email.helperText : ''}
                         onChange={handleInputChange}
+                        value={form.email.value}
                         name='email'
                         label='Email'
                         variant='outlined'
@@ -189,6 +225,7 @@ const UserForm = () => {
                     <Button
                         loading={isLoading}
                         onClick={handleRegisterButton}
+                        disabled={isOpen}
                         variant='contained'
                         sx={{
                             width: '100%',
@@ -199,12 +236,28 @@ const UserForm = () => {
                     </Button>
                 </Grid>
 
+
+                {isOpen &&
+                    <>
+                        <UserCard user={form} />
+
+                        <Grid size={{ xs: 12, sm: 7, md: 4 }}>
+                            <Button
+                                onClick={handleResetButton}
+                                variant='contained'
+                                sx={{
+                                    backgroundColor: 'green',
+                                    color: 'white',
+                                    width: '100%',
+                                    padding: '10px 0px'
+                                }}>
+                                Gerar outro cartão!
+                            </Button>
+                        </Grid>
+                    </>
+                }
             </Grid>
-
-            {isOpen && <UserCard user={form} />}
         </Box>
-
-
     )
 }
 
