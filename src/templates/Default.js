@@ -22,7 +22,7 @@ const TemplateDefault = ({ children }) => {
         <ThemeProvider theme={theme}>
             <CssBaseline>
                 <Header toggleTheme={toggleTheme} isDark={mode} />
-                <Container sx={{ mt: 8 }}>
+                <Container sx={{ paddingTop: 4, paddingBottom: 4 }}>
                     {children}
                 </Container>
             </CssBaseline>
