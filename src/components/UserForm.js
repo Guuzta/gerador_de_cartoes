@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 
 import UserCard from './UserCard'
+import Toasty from './Toasty'
 
 const UserForm = () => {
 
@@ -107,8 +108,6 @@ const UserForm = () => {
             ...form
         })
 
-        console.log(resetFormState)
-
         resetFormState.name = {
             value: '',
             error: false
@@ -130,7 +129,6 @@ const UserForm = () => {
         }
 
         setForm(resetFormState)
-        console.log(form)
     }
 
     const toggleCardView = () => {
@@ -239,6 +237,7 @@ const UserForm = () => {
 
                 {isOpen &&
                     <>
+                        <Toasty />
                         <UserCard user={form} />
 
                         <Grid size={{ xs: 12, sm: 7, md: 4 }}>
@@ -246,7 +245,7 @@ const UserForm = () => {
                                 onClick={handleResetButton}
                                 variant='contained'
                                 sx={{
-                                    backgroundColor: 'green',
+                                    backgroundColor: '#388e3c',
                                     color: 'white',
                                     width: '100%',
                                     padding: '10px 0px'
